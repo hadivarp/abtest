@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <title><%= content_for(:title) || "ابزارچی" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <style>
+      body {
+        direction: rtl;
+        text-align: right;
+      }
+      nav ul li {
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="flex">
+      <nav class="flex w-full">
+        <div class="w-64 p-4 h-screen bg-gray-600 sticky top-0">
+          <div class="flex">
+            <%= image_tag 'logo.png', class: 'w-16' %>
+            <h1 class="text-md py-2 text-gray-50 font-bold hidden md:block">دشبورد ابزارچی</h1>
+          </div>
+          <ul class="flex flex-col text-gray-50">
+            <li>
+              <%= link_to admin_path, class: "block px-4 py-2 hover-rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'gauge-high', class: 'mr-2') %>
+                <span class="hidden md:inline-block">دشبورد</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_products_path, class: "block px-4 py-2 hover-rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'cart-shopping', class: 'mr-2') %>
+                <span class="hidden md:inline-block">محصولات</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_categories_path, class: "block px-4 py-2 hover-rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'list', class: 'mr-2') %>
+                <span class="hidden md:inline-block">دسته بندی ها</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_path, class: "block px-4 py-2 hover-rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'truck-fast', class: 'mr-2') %>
+                <span class="hidden md:inline-block">سفارشات</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_path, class: "block px-4 py-2 hover-rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'fa-solid fa-cogs', class: 'mr-2') %>
+                <span class="hidden md:inline-block">تراکنش ها</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_path, class: "block px-4 py-2 hover-rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'fa-solid fa-exchange-alt', class: 'mr-2') %>
+                <span class="hidden md:inline-block">تنظیمات</span>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="w-full">
+        <%= yield %>
+      </div>
+    </main>
+  </body>
+</html>
